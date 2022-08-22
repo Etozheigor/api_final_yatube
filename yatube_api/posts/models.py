@@ -14,6 +14,7 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
+
 class Post(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
@@ -26,7 +27,6 @@ class Post(models.Model):
                               null=True,
                               on_delete=models.SET_NULL,
                               related_name='posts')
-                              
 
     def __str__(self):
         return self.text
@@ -47,14 +47,19 @@ class Comment(models.Model):
 
 
 class Follow(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
-    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='follower')
+    following = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='following')
 
     class Meta:
-        # constraints = (
-        #     models.UniqueConstraint(fields=['user', 'following'],
-        #                             name='unique_follow'),
-        # )
+        constraints = (
+            models.UniqueConstraint(fields=['user', 'following'],
+                                    name='unique_follow'),
+        )
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
-
