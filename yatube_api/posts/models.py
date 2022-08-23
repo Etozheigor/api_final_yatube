@@ -11,6 +11,10 @@ class Group(models.Model):
                             verbose_name='имя в url')
     description = models.TextField(verbose_name='Описание')
 
+    class Meta:
+        verbose_name = 'Группа'
+        verbose_name = 'Группы'
+
     def __str__(self):
         return self.title
 
@@ -28,12 +32,12 @@ class Post(models.Model):
                               on_delete=models.SET_NULL,
                               related_name='posts')
 
-    def __str__(self):
-        return self.text
-
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+
+    def __str__(self):
+        return self.text[:15]
 
 
 class Comment(models.Model):
@@ -58,7 +62,7 @@ class Follow(models.Model):
 
     class Meta:
         constraints = (
-            models.UniqueConstraint(fields=['user', 'following'],
+            models.UniqueConstraint(fields=('user', 'following', ),
                                     name='unique_follow'),
         )
         verbose_name = 'Подписка'
