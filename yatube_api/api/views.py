@@ -1,8 +1,8 @@
-from rest_framework import filters, generics, viewsets, mixins
+from rest_framework import filters, mixins, viewsets
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated
 
-from posts.models import Group, Post, Follow
+from posts.models import Group, Post
 from .permisions import IsAuthorOrReadOnly
 from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
                           PostSerializer)
@@ -36,14 +36,15 @@ class CommentViewSet(viewsets.ModelViewSet):
         commented_post = Post.objects.get(id=self.kwargs.get('post_id'))
         serializer.save(author=self.request.user, post=commented_post)
 
-# class CreateListViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, 
 
-#                         viewsets.GenericViewSet): 
+class CreateListViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
 
-#     """Кастомный Вьюсет для модели Follow""" 
+                        viewsets.GenericViewSet):
+
+    """Кастомный Вьюсет для модели Follow"""
 
 
-class FollowViewSet(generics.ListCreateAPIView):
+class FollowViewSet(CreateListViewSet):
     serializer_class = FollowSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = (filters.SearchFilter,)
