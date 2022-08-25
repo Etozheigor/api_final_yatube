@@ -1,8 +1,8 @@
+from posts.models import Group, Post
 from rest_framework import filters, mixins, viewsets
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated
 
-from posts.models import Group, Post
 from .permisions import IsAuthorOrReadOnly
 from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
                           PostSerializer)
@@ -38,7 +38,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class CreateListViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
-
                         viewsets.GenericViewSet):
 
     """Кастомный Вьюсет для модели Follow"""
