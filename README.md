@@ -1,15 +1,20 @@
-# API_FINAL_YATUBE
+# API Yatube
 
-### Описание проекта
+### О проекте
 
 Данный проект является api-сервисом для проекта [Yatube](https://github.com/Etozheigor/hw05_final).
 Он дает пользователям возможность обращаться к проекту Yatube с различных устройств и сервисов и получать необходимый контент.
 Yatube наполенен таким конетентом, как посты пользователей, комментарии к ним, тематические группы, подписки авторов друг на друга.
 
+### Технологии
+- Python
+- Django
+- DRF
+- Djoser
 
-### Как запустить:
+### Как запустить проект:
 
-Клонировать репозиторий и перейти в него в командной строке:
+- Клонировать репозиторий и перейти в него в командной строке:
 
 ```
 git clone https://github.com/Etozheigor/api_final_yatube
@@ -19,7 +24,7 @@ git clone https://github.com/Etozheigor/api_final_yatube
 cd api_final_yatube
 ```
 
-Cоздать и активировать виртуальное окружение:
+- Cоздать и активировать виртуальное окружение:
 
 ```
 python -m venv venv
@@ -29,7 +34,7 @@ python -m venv venv
 source venv/Scripts/activate
 ```
 
-Установить зависимости из файла requirements.txt:
+- Установить зависимости из файла requirements.txt:
 
 ```
 python -m pip install --upgrade pip
@@ -39,17 +44,23 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Выполнить миграции:
+- Выполнить миграции:
 
 ```
 python manage.py migrate
 ```
 
-Запустить проект:
+- Запустить проект:
 
 ```
 python manage.py runserver
 ```
+Проект будет доступен локально по адресу:
+
+```
+http://localhost/
+```
+
 ### Примеры обращений к API Yatube
 
 После запуска проекта вы можете обратиться к документации проекта по следующему адресу:
